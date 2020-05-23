@@ -1,0 +1,116 @@
+.login .header {
+    grid-column: 1/13;
+    height: fit-content;
+    text-align: center;
+}
+
+.login .logo{
+    width: fit-content;
+    padding: 5px 20px;
+    font-size: 35px;
+    margin: 5px auto;
+    border: 5px solid #EEC213;
+    border-radius: 10%;
+}
+
+.login h1 {
+    grid-column: 1/13;
+    margin: 30px auto;
+    font-family: Neucha;
+}
+
+.login form {
+    grid-column: 1/13;
+}
+
+.login .line {
+    column-span: span 12;
+}
+
+.login input {
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    font-size: 20px;
+    font-family: Neucha;
+    text-align: center;
+    padding: 5px 0px;
+    grid-column: 4/10;
+    
+    color: #ffffff;
+    margin-bottom: 5px;
+    outline: none;
+}
+
+.login input:focus {
+    border: 4px solid #EEC213;
+}
+
+.login .btn {
+    margin-top: 15px;
+    grid-column: 6/8;
+    font-family: Chewy;
+    border-color: #EEC213;
+    border-width: 3px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.login .btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.login p {
+    font-family: Neucha;
+    grid-column: span 12;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.login a {
+    text-decoration: none;
+    color: #EEC213;
+    font-size: 18px;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+.login .yellow  {
+    background-color: #EEC213;
+    margin: 0px;
+    margin-top: 25px;
+    padding: 10px;
+    color: #000000;
+    grid-column: span 12;
+    font-size: 1.1em;
+    font-family: Archivo;
+}
+
+.login .yellow a {
+    color: #000000;
+    text-decoration: underline; 
+}
+
+.login hr {
+    grid-column: span 12;
+    border-top: 5px solid #ffffff;
+}
+
+.login .footer {
+    
+    color: #ffffff;
+    font-family: Chewy;
+    text-align: center;
+    margin: 0.5em auto;
+    grid-column: span 12;
+    font-size: 0.8em;
+}
+
+.login .tmdb {
+    font-size: 1.2em;
+    text-decoration: overline;
+    text-decoration-color: #EEC213;
+
+}

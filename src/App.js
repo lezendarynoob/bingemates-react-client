@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Login from './components/Login';
+import './assets/styles/App.css';
+import Home from './components/Home';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-
-      <h1> Welcome </h1>
       <BrowserRouter>
         <Switch>
-          
+          <Route exact path = '/' component = {props.isAuthenticated ? Home : Login} />
         </Switch>
       </BrowserRouter>
 
@@ -16,4 +18,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+};
+
+export default connect(mapStateToProps)(App);
