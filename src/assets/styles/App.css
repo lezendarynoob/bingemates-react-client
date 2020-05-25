@@ -30,6 +30,10 @@ input:focus::placeholder {
     color: transparent;
 }
 
+textarea:focus::placeholder {
+    color: transparent;
+}
+
 input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px #000000 inset;
 }

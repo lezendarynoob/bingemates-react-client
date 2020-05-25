@@ -1,21 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Login from './components/Login';
 import './assets/styles/App.css';
 import Home from './components/Home';
+import SignUp from './components/SignUp';
+import authCheck from './actions/authCheck';
 
-function App(props) {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path = '/' component = {props.isAuthenticated ? Home : Login} />
-        </Switch>
-      </BrowserRouter>
+class App extends Component {
 
-    </div>
-  );
+  state = {
+    loaded: false
+  };
+
+  async componentDidMount() {
+    await this.props.authCheck();
+    this.setState({
+      loaded: true
+    });
+  }
+  
+  content() {
+    return(
+      <div className="App">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path = '/' component = {this.props.isAuthenticated ? Home : Login} />
+            <Route path = '/auth/signup' component = {SignUp} />
+          </Switch>
+        </BrowserRouter>
+
+      </div>
+    );
+  }
+
+  render(){
+    return(
+      this.state.loaded ? this.content(): null
+    );
+  };
 }
 
 const mapStateToProps = (state) => {
@@ -24,4 +47,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authCheck: () => dispatch(authCheck())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -23,6 +23,19 @@
     grid-column: 1/13;
 }
 
+.login form p {
+    grid-column: span 12;
+    font: 1.1em;
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+    font-family: Archivo;
+}
+
+.red {
+    border: 3px solid red;
+}
+
 .login .line {
     column-span: span 12;
 }

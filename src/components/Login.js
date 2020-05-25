@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 import '../assets/styles/Login.css';
 import { Link } from 'react-router-dom';
+import transport from '../config/transport';
+import { connect } from 'react-redux';
+import login from '../actions/login';
 
 
 class Login extends Component{
     state = {
         user: '',
-        password: ''
+        password: '',
+        message: ''
     }
 
-    handleSubmit = e => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(this.state);
+        try{
+            let res = await transport.post('http://localhost:4000/auth/login', {
+                username: this.state.user,
+                password: this.state.password
+            });
+            if(res.data.message === 'done'){
+                this.props.login();
+            }
+            else{
+                this.setState({
+                    message: res.data.message
+                });
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+        
 
     };
     handleChange = e => {
@@ -27,7 +48,7 @@ class Login extends Component{
                 </div>
                 <h1> Login </h1>
                 <form onSubmit = {this.handleSubmit} className = 'grid'>
-                    
+                    <p className = {this.state.message.length > 0 ? 'red' : ''}> {this.state.message} </p>
                     <input id = 'user' onChange = {this.handleChange} type = 'text' placeholder = 'Username' name = 'username' required />
                     <input id = 'password' onChange = {this.handleChange} type = 'password' placeholder = 'Password' name = 'password' required />
                     <input type = 'submit' value = 'Enter' className = 'btn' />
@@ -50,4 +71,10 @@ class Login extends Component{
     };
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: () => dispatch(login())
+    }
+};
+
+export default connect(null, mapDispatchToProps)(Login);
